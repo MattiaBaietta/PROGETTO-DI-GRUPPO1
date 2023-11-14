@@ -101,8 +101,10 @@ const questions = [
   ];
 
 let contatore=0
+let timeout
 function PickRandomQuestion(ListaDomande){ //,Numerodomande,Difficoulty quando farà gli extra
     let i2=0
+    
     console.log(contatore)//contatore funziona 
         
         i2=Math.floor(Math.random()*ListaDomande.length)
@@ -110,7 +112,14 @@ function PickRandomQuestion(ListaDomande){ //,Numerodomande,Difficoulty quando f
         
         if(ListaDomande!=0)
         {
+            document.getElementById("main").innerHTML=""
             CreaBottone(ListaDomande[i2])
+            clearTimeout(timeout)
+            timeout=setTimeout(function(){
+        
+              PickRandomQuestion(questions)
+              
+            },10000)
             
             ListaDomande.splice(i2,1)
             
@@ -123,6 +132,7 @@ function PickRandomQuestion(ListaDomande){ //,Numerodomande,Difficoulty quando f
             let creacorrect=document.createElement("h4")
             let creawrong=document.createElement("h4")
             creacorrect.innerText="Correct "+ (contatore/10)*100+"%" + contatore + "/10 questions"
+            CreaRisultato(100-(contatore*10))
             creawrong.innerText="Wrong " + (10-contatore)/10*100+"%" + (10-contatore) + "/10 questions"
             checkpos.appendChild(creacorrect)
             creacorrect.appendChild(creawrong)
@@ -140,8 +150,9 @@ function CreaBottone(domanda){
     createsto.appendChild(creaform)
     let creapulsante=document.createElement("button")
     let creaquestion=document.createElement("label")
-    creaquestion.innerText="QUESTION "+domandacorrente+"/10"
-    creaquestion.classList="labelquestion"  //classe label question
+    creaquestion.classList="labelquestion" 
+    creaquestion.innerHTML=`QUESTION `+domandacorrente+`<span style="color:#d20094">/10</span>`
+     //classe label question
     createsto.innerText=domanda.question
     checkpos.appendChild(creadiv)
     creadiv.appendChild(createsto)
@@ -152,7 +163,7 @@ function CreaBottone(domanda){
     
     creapulsante.addEventListener("click",function(){
         contatore++
-        creadiv.remove()
+        
         PickRandomQuestion(questions)
         
         
@@ -166,31 +177,29 @@ function CreaBottone(domanda){
             creapulsante.classList="buttonrisposte"
             creadiv.appendChild(creapulsante)
             creadiv.append(creaquestion)
-            creapulsante.addEventListener("click",function(){
-                
-                creadiv.remove()
-                PickRandomQuestion(questions)
-                
-                
+            creapulsante.addEventListener("click",function(){  
+                PickRandomQuestion(questions)   
             })
     }
     domandacorrente++
-    if(domandacorrente<=10)
-    { 
-      setTimeout(function(){
-        PickRandomQuestion(questions)
-        creadiv.remove()
-      },5000)
+}
+function CreaRisultato(percent){
 
-    }
+ 
+  percent = Math.min(100, Math.max(0, percent));
+  var dashLength = (percent / 100) * 565.48;
+  checkpos[0].innerHTML=`
+  <svg id="circular-progress" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  
     
+    <circle  cx="100" cy="100" r="90" fill="none" stroke="#00ffff" transform="rotate(270 100 100)" stroke-width="9" />
+
     
+    <circle cx="100" cy="100" r="90" fill="none" stroke="#d20094" transform="rotate(270 100 100)" stroke-width="10"  stroke-dasharray="`+ dashLength +`, 565.48" />
+</svg>`
 
 }
 
-
-
-//PickRandomQuestion(questions)
 function PrimaPagina(){
     
     let createbutton=document.createElement("input")
