@@ -1,4 +1,5 @@
 let checkpos=document.getElementsByTagName("main")
+let domandacorrente=1
 const questions = [
     {
       category: "Science: Computers",
@@ -138,7 +139,9 @@ function CreaBottone(domanda){
     let createsto=document.createElement("h2")
     createsto.appendChild(creaform)
     let creapulsante=document.createElement("button")
-    
+    let creaquestion=document.createElement("label")
+    creaquestion.innerText="QUESTION "+domandacorrente+"/10"
+    creaquestion.classList="labelquestion"  //classe label question
     createsto.innerText=domanda.question
     checkpos.appendChild(creadiv)
     creadiv.appendChild(createsto)
@@ -162,6 +165,7 @@ function CreaBottone(domanda){
             
             creapulsante.classList="buttonrisposte"
             creadiv.appendChild(creapulsante)
+            creadiv.append(creaquestion)
             creapulsante.addEventListener("click",function(){
                 
                 creadiv.remove()
@@ -170,9 +174,16 @@ function CreaBottone(domanda){
                 
             })
     }
+    domandacorrente++
+    if(domandacorrente<=10)
+    { 
+      setTimeout(function(){
+        PickRandomQuestion(questions)
+        creadiv.remove()
+      },5000)
+
+    }
     
-    /*setTimeout(function(){
-        PickRandomQuestion(questions)},5000)*/
     
 
 }

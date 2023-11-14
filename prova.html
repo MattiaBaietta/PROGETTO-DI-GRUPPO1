@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Circle</title>
+    <style>
+        #progress-container {
+            width: 200px;
+            height: 200px;
+            position: relative;
+        }
+
+        #progress-circle {
+            fill: none;
+            stroke: #3498db; /* Colore dello stroke (linea) */
+            stroke-width: 20; /* Spessore della linea */
+            stroke-dasharray: 0; /* Imposta la lunghezza della dash a 0 */
+            transition: stroke-dasharray 0.5s ease; /* Aggiunge una transizione animata */
+        }
+        #progress-text {
+            text-anchor: middle; /* Centra il testo rispetto al punto di ancoraggio */
+            dominant-baseline: middle; /* Centra il testo verticalmente rispetto al punto di ancoraggio */
+            font-size: 20px;
+            font-family: Arial, sans-serif;
+            fill: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div id="progress-container">
+    <svg height="100%" width="100%">
+        <circle id="progress-circle" cx="50%" cy="50%" r="90" />
+        <text id="progress-text" x="50%" y="50%">0%</text>
+    </svg>
+</div>
+
+<script>
+    // Simulazione di progresso (puoi sostituire questa variabile con il tuo progresso effettivo)
+    let progress = 0;
+
+    // Funzione per aggiornare la progress bar
+    function updateProgressBar() {
+        const circle = document.getElementById('progress-circle');
+        const radius = circle.r.baseVal.value;
+        const circumference = 2 * Math.PI * radius;
+        const dash = (progress / 100) * circumference;
+
+        circle.style.strokeDasharray = `${dash} ${circumference - dash}`;
+    }
+
+    // Esempio di aumento del progresso ogni secondo (puoi sostituire questo timer con la tua logica di aggiornamento)
+    setInterval(() => {
+        if (progress < 100) {
+            progress += 5; // Incrementa il progresso del 5% ogni secondo (puoi cambiare questo valore)
+            updateProgressBar();
+        }
+    }, 1000);
+</script>
+
+</body>
+</html>
