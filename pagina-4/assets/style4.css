@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+body{
+    background-image: url(/pagina-4/images/bg.jpg);
+    background-size: cover;
+    color: white;
+    font-family: 'Inter';
+    font-size: 1.7em;
+    background-repeat: no-repeat;
+    margin: 1.75em 4.7em;
+}
+img{
+    width: 20%;
+    margin-bottom: 2em;
+}
+main{
+    text-align: center;
+}
+h2{
+    margin-top: 1em;
+    margin-bottom: 0px;
+    font-family: 'Inter';
+    font-size: 50px;
+
+}
+svg{
+    fill: #140635;
+    width: 6.5%;
+    cursor: pointer;
+    margin-bottom: 2.3em;
+}
+svg:hover path{
+    fill: #00ffff;
+}
+#write{
+    color: white;
+    font-family: 'Inter';
+    width: 80%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 0.7em;
+    margin-top: 1em;
+    margin-left: 4.5em;
+}
+#lilla{
+    width: 78%;
+    margin-top: 8px;
+    margin-left: 4.3em;
+    height: 3px;
+    background-color: #9b1a85;
+}
+#bottone{
+    cursor: pointer;
+    box-shadow: 0px 0px 20px 3px #00ffff ;
+    color: #051339;
+    font-family: 'Inter';
+    width: 10em;
+    height: 2.8em;
+    background-color: #00ffff;
+    font-size: 0.9em;
+    font-weight: 1000;
+    border: 0px;
+    margin-top: 1.4em;
+}
+footer{
+    text-align: center;
+}
