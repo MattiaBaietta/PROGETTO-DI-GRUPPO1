@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+body{
+    background-image: url(../images/bg.jpg);
+    background-size: 100%;
+    color: white;
+    font-family: 'Inter';
+    
+    margin: 2em 8em;
+    background-repeat: no-repeat;
+}
+/*classe font testo pagina welcome*/
+.testop1{ 
+    font-size: 16px;
+}
+img{
+    width: 15%;
+    padding: 0.5em;
+    margin-left: 0.93em;
+}
+h1{
+    margin-bottom: 0px;
+    font-family: 'Outfit';
+    font-size: 60px;
+    font-weight: 400;
+}
+h2{    
+    font-family: 'Outfit', sans-serif;
+    font-size: 75px;
+    font-weight: lighter;
+    margin-top: 150px;
+    text-align: center;
+    color: white;
+    margin-bottom: 70px;
+ }
+h3{
+    color: #d20094;
+    font-size: 30px;
+    margin-bottom: 0px;
+}
+form{
+    text-align: center;
+    margin-left: 7%;
+    margin-right: 7%;
+   
+
+ }
+span{
+    font-weight: bolder;
+}
+ul{
+    margin-top: 3em;
+    padding-left: 30px;
+    margin-bottom: 6em;
+}
+
+
+#bottone{
+    cursor: pointer;
+    box-shadow: 0px 0px 20px 3px #00ffff ;
+    color: #0b113b;
+    font-family: 'Inter';
+    width: 9.5em;
+    height: 2.7em;
+    background-color: #00ffff;
+    margin-left: 12em;
+    font-size: 1.5em;
+    font-weight: 1000;
+    border: 0px;
+}
+
+.buttonrisposte{
+    font-size: 23px;
+    font-weight: bold;
+    display: inline-block;
+    background-color:transparent;
+    color: black;
+    width: 40%;
+    height: 90px;
+    border-color: white;
+    border-radius: 50px;
+    margin: 20px;
+    padding: 1px;
+    color: white;
+    
+    
+ }
+ .buttonrisposte:hover {
+    background-color: #d20094;
+ }
+
+ .risposte {
+    background-color: #900080;
+    border-radius: 2px;
+    text-align: center;
+    margin: 1.5px;
+
+ }
