@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;700&display=swap');
 body{
     background-image: url(../images/bg.jpg);
     background-size: 100%;
@@ -9,7 +10,9 @@ body{
     margin: 2em 8em;
     background-repeat: no-repeat;
 }
-
+.hide{
+    display: none;
+}
 /*classe font testo pagina welcome*/
 .testop1{ 
     font-size: 16px;
@@ -94,6 +97,23 @@ ul{
 
 
  }
+ .bottonefooter{
+    box-shadow: 0px 0px 20px -5px #00ffffb6;
+    cursor: pointer;
+    color: white;
+    font-family: 'Inter';
+    width: 10em;
+    height: 2.8em;
+    background-color: transparent;
+    font-size: 1.5em;
+    font-weight: 1000;
+    border: 5px solid white;
+    border-style: solid;
+   
+}
+footer{
+    text-align: center;
+}
  .buttonrisposte:hover {
     background-color: #d20094;
  }
@@ -115,9 +135,59 @@ ul{
     display: block;
     width: 300px
  }
+ .elemento{
+    max-width: 175px;
+ }
+ .elemento h4{
+    display: inline-block;
+    color: white;
+    padding-top: -20px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 100!important;
+    font-size: 3.5em;
+    margin-bottom: 0px;
+    margin-top: 0px;
+ }
 
+.classedivpg3{
 
+        
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+     
+}
+.classedivpg3 > div{
+    display: inline-block;
+}
+#firstText{
+    font-family: 'Outfit', sans-serif;
+    text-align: center;
+}
 
+#firstText h1{
+    font-size: 4em;
+    text-align: center;
+    color: white;
+    font-weight: 700;
+    line-height: 2px;
+}
+#firstText p{
+        text-align: center;
+        color: white;
+        font-size: 2em;
+}
+#contenitore {
+    padding-left: 70px;
+    padding-right: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ 
+}
+.classetimer{
+    
+}
 /*svg{
     fill: #140635;
     width: 6.5%;
@@ -145,3 +215,19 @@ svg:hover path{
     height: 3px;
     background-color: #9b1a85;
 }*/
+
+/*.bottonefooter{
+    box-shadow: 0px 0px 20px -5px #00ffffb6 ;
+    cursor: pointer;
+    color: white;
+    font-family: 'Inter';
+    width: 10em;
+    height: 2.8em;
+    background-color: transparent;
+    font-size: 1.5em;
+    font-weight: 1000;
+    border: 5;
+    border-color: white;
+    font-family: 'Outfit', sans-serif;
+    margin-left: 395px;
+ }*/
