@@ -201,14 +201,16 @@ function CreaBottone(domanda){
     let creaquestion=document.createElement("label")
     creaquestion.classList="labelquestion" 
     creaquestion.innerHTML=`QUESTION `+domandacorrente+`<span style="color:#d20094">/10</span>`
-     //classe label question
     createsto.innerText=domanda.question
     checkpos.appendChild(creadiv)
     creadiv.appendChild(createsto)
+    let divrisposte=document.createElement("div")
+    divrisposte.classList="divrisposte"
+    creadiv.appendChild(divrisposte)
     creapulsante.innerText=domanda.correct_answer
     
     creapulsante.classList="buttonrisposte"
-    creadiv.appendChild(creapulsante)
+    divrisposte.appendChild(creapulsante)
     
     creapulsante.addEventListener("click",function(){
         contatore++
@@ -224,7 +226,7 @@ function CreaBottone(domanda){
             creapulsante.innerText=domanda.incorrect_answers[i2]
             
             creapulsante.classList="buttonrisposte"
-            creadiv.appendChild(creapulsante)
+            divrisposte.appendChild(creapulsante)
             creadiv.append(creaquestion)
             creapulsante.addEventListener("click",function(){  
                 PickRandomQuestion(questions)   
@@ -244,7 +246,7 @@ function CreaRisultato(percent){
   
     
     <circle  cx="-20" cy="250" r="180" fill="none" stroke="#00ffff" transform="rotate(270 100 100)" stroke-width="57" />
-    <text  x="280" y="120" text-anchor="middle" alignment-baseline="middle" fill="white"><tspan x="250" dy="1.2em" style="font-weight: bold;font-size:1.1em">Congratulations!</tspan><tspan fill="#00ffff" x="250" dy="1.2em" style="font-weight: bold;font-size:1.1em" >You Passed the exam.</tspan><tspan x="250" dy="3.5em"> We'll send you the certificate</tspan><tspan x="250" dy="1.2em">in few minutes.</tspan><tspan x="270" dy="1.2em">Check you email (including</tspan><tspan x="270" dy="1.2em">promotions/spam folder)<tspan></text>
+    <text  x="280" y="120" text-anchor="middle" alignment-baseline="middle" fill="white"><tspan x="250" dy="1.2em" style="font-weight: bold;font-size:1.1em">Congratulations!</tspan><tspan fill="#00ffff" x="250" dy="1.2em" style="font-weight: bold;font-size:1.1em" >You Passed the exam.</tspan><tspan x="250" dy="3.5em"> We'll send you the certificate</tspan><tspan x="250" dy="1.2em">in few minutes.</tspan><tspan x="250" dy="1.2em">Check you email (including</tspan><tspan x="250" dy="1.2em">promotions/spam folder)<tspan></text>
 
     
     <circle cx="-20" cy="250" r="180" fill="none" stroke="#d20094" transform="rotate(270 100 100)" stroke-width="60"  stroke-dasharray="`+ dashLength +`, 1131" />
