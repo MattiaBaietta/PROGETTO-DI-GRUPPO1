@@ -108,10 +108,16 @@ let contatore=0
 let timeout
 function PickRandomQuestion(ListaDomande){ //,Numerodomande,Difficoulty quando farà gli extra
     let i2=0
-    
+    checkpos[0].style="margin-top:150px"
     console.log(contatore)//contatore funziona 
         
         i2=Math.floor(Math.random()*ListaDomande.length)
+        if(document.getElementById("progress-container2"))
+        {
+          document.getElementById("progress-container2").remove()
+        }
+        //function timer
+        creaTimer()
         
         
         if(ListaDomande!=0)
@@ -123,14 +129,15 @@ function PickRandomQuestion(ListaDomande){ //,Numerodomande,Difficoulty quando f
         
               PickRandomQuestion(questions)
               
-            },10000)
+            },20000)
             
             ListaDomande.splice(i2,1)
             
         }
         else{
             clearTimeout(timeout)
-            
+            checkpos[0].style="margin-top:0px"
+            document.getElementById("progress-container2").remove()
             //creare classe css per il risultato
             document.getElementById("main").innerHTML=""
             let creabottonefooter=document.createElement("input")
@@ -190,6 +197,101 @@ function PickRandomQuestion(ListaDomande){ //,Numerodomande,Difficoulty quando f
         
 
 }
+
+
+
+
+
+
+
+let percentage = 100;
+
+function creaTimer(){
+  
+        
+  let elapsedSeconds = 0;
+  let creadivtimer=document.createElement("div")
+  creadivtimer.id="progress-container2"
+  let creasvg2 = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  creasvg2.setAttribute("height", "200");
+  creasvg2.setAttribute("width", "200");
+  
+  let creacircle1 = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+  creacircle1.id = "outer-circle";
+  creacircle1.setAttribute("cx", "130");
+  creacircle1.setAttribute("cy", "110");
+  creacircle1.setAttribute("r", "60");
+  creacircle1.setAttribute("transform" ,"rotate(270 100 100)");
+  let creacircle2 = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+  creacircle2.id = "progress-circle";
+  creacircle2.setAttribute("cx", "130");
+  creacircle2.setAttribute("cy", "110");
+  creacircle2.setAttribute("r", "60");
+  creacircle2.setAttribute("transform" ,"rotate(270 100 100)");
+  let circletext = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  circletext.id = "progress-text";
+  circletext.setAttribute("x", "110");
+  circletext.setAttribute("y", "70");
+  
+  
+  
+  document.getElementsByTagName("header")[0].appendChild(creadivtimer)
+  creadivtimer.appendChild(creasvg2)
+  creasvg2.appendChild(creacircle1)
+  creasvg2.appendChild(creacircle2)
+  creasvg2.appendChild(circletext)
+  const durationInSeconds = 23;
+  const initialDashOffset = parseFloat(getComputedStyle(creacircle2).strokeDasharray);
+  const dashOffsetPerSecond = initialDashOffset / durationInSeconds;
+
+  function startTimer() {
+    
+    const timerInterval = setInterval(() => {
+      elapsedSeconds++;
+      const dashOffset = Math.max(0, initialDashOffset - dashOffsetPerSecond * elapsedSeconds);
+      creacircle2.style.strokeDashoffset = dashOffset;
+      circletext.innerHTML = `SECONDS
+      ${durationInSeconds - 3 - elapsedSeconds}
+      REMAINING`;
+      if (elapsedSeconds >= durationInSeconds) {
+        clearInterval(timerInterval);
+      }
+    }, 1000);
+   
+  }
+  
+  startTimer()
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  /*percentage = Math.min(100, Math.max(0, percentage));
+  let dashLength = (percentage / 100) * 377.09;
+  console.log(dashLength)
+
+  let creadivtimer=document.createElement("div")
+  creadivtimer.id="progress-container2"
+  document.getElementsByTagName("header")[0].appendChild(creadivtimer)
+  creadivtimer.innerHTML=`
+  <svg height="100%" width="100%" transform: rotate(270deg)>
+  <!-- Cerchio esterno (contorno) -->
+  <circle id="outer-circle" cx="50%" cy="50%" r="55" stroke-dasharray="></circle>
+
+  <!-- Cerchio di riempimento -->
+  <circle id="progress-circle" cx="50%" cy="50%" r="55" stroke-dasharray="`+ dashLength +`, 377.09"></circle>
+  <text id="progress-text" x="50%" y="50%">0%</text>
+</svg>`*/
+
+
+
+}
 function CreaBottone(domanda){
     
     let checkpos=document.getElementById("main")
@@ -238,7 +340,7 @@ function CreaRisultato(percent){
 
  
   percent = Math.min(100, Math.max(0, percent));
-  var dashLength = (percent / 100) * 1131;
+  let dashLength = (percent / 100) * 1131;
   let creadivsvg=document.createElement("div")
   creadivsvg.id="progress-container"
   creadivpagina3.appendChild(creadivsvg).innerHTML=`
@@ -246,7 +348,7 @@ function CreaRisultato(percent){
   
     
     <circle  cx="-20" cy="250" r="180" fill="none" stroke="#00ffff" transform="rotate(270 100 100)" stroke-width="57" />
-    <text  x="280" y="120" text-anchor="middle" alignment-baseline="middle" fill="white"><tspan x="250" dy="1.2em" style="font-weight: bold;font-size:1.1em">Congratulations!</tspan><tspan fill="#00ffff" x="250" dy="1.2em" style="font-weight: bold;font-size:1.1em" >You Passed the exam.</tspan><tspan x="250" dy="3.5em"> We'll send you the certificate</tspan><tspan x="250" dy="1.2em">in few minutes.</tspan><tspan x="250" dy="1.2em">Check you email (including</tspan><tspan x="250" dy="1.2em">promotions/spam folder)<tspan></text>
+    <text  x="280" y="120" text-anchor="middle" alignment-baseline="middle" fill="white"><tspan x="250" dy="1.2em" style="font-weight: bold;font-size:1.1em">Congratulations!</tspan><tspan fill="#00ffff" x="250" dy="1.2em" style="font-weight: bold;font-size:1.1em" >You passed the exam.</tspan><tspan x="250" dy="3.5em"> We'll send you the certificate</tspan><tspan x="250" dy="1.2em">in few minutes.</tspan><tspan x="250" dy="1.2em">Check you email (including</tspan><tspan x="250" dy="1.2em">promotions/spam folder)<tspan></text>
 
     
     <circle cx="-20" cy="250" r="180" fill="none" stroke="#d20094" transform="rotate(270 100 100)" stroke-width="60"  stroke-dasharray="`+ dashLength +`, 1131" />
@@ -257,7 +359,7 @@ function CreaRisultato(percent){
 function PrimaPagina(){
     
     let createbutton=document.createElement("input")
-    
+    checkpos[0].style="margin-top:0px"
     checkpos[0].innerHTML=`<h1>Welcome to <br> <span>your exam</span>
     </h1>
 
@@ -279,18 +381,152 @@ function PrimaPagina(){
         </li>
        </ul>
    </div>
-   <input class="" type="checkbox" id="checkbox1" name="checkbox1">
-   <label for="checkbox1">I promise to answer myself without help from anyone</label>`
+   <input class="" type="checkbox" id="checkbox1" name="checkbox1" onchange="rimuovihover()">
+   <label for="checkbox1">I promise to answer myself without help from anyone</label>
+   
+    <div id="hoverTextbox">
+    Devi prima spuntare la checkbox
+    </div>`
     createbutton.setAttribute("type","button")
     createbutton.id="bottone"
     createbutton.value="PROCEED"
+    createbutton.setAttribute("onmousemove","aggiornaPosizioneTextbox(event)")
+    createbutton.setAttribute("onmouseover","mostraTextbox()")
+    createbutton.setAttribute("onmouseout","nascondiTextbox()")
+    
     checkpos[0].appendChild(createbutton)
-    createbutton.addEventListener("click",function(){
-        checkpos[0].innerHTML=""
-        PickRandomQuestion(questions)
-    })
+    let trovacheckbox=document.getElementById("checkbox1")
+    
+      console.log(trovacheckbox.checked)
+      createbutton.addEventListener("click",function(){
+          
+          if(trovacheckbox.checked)
+          {
+
+            checkpos[0].innerHTML=""
+            PickRandomQuestion(questions)   
+          }
+          else{
+            
+          }
+         
+    })   
+
+ 
     
     
     
 }
+
 PrimaPagina()
+function rimuovihover(){
+  let trovacheckbox=document.getElementById("checkbox1")
+  let trovabottone=document.getElementById("bottone")
+  if(trovacheckbox.checked)
+  {
+    trovabottone.removeAttribute("onmousemove")
+    trovabottone.removeAttribute("onmouseover")
+    trovabottone.removeAttribute("onmousemout")
+  }
+  if(!trovacheckbox.checked)
+  {
+    trovabottone.setAttribute("onmousemove","aggiornaPosizioneTextbox(event)")
+    trovabottone.setAttribute("onmouseover","mostraTextbox()")
+    trovabottone.setAttribute("onmouseout","nascondiTextbox()")
+  }
+}
+rimuovihover()
+function mostraTextbox() {
+  var textbox = document.getElementById("hoverTextbox");
+  textbox.style.display = "block";
+}
+
+function nascondiTextbox() {
+  var textbox = document.getElementById("hoverTextbox");
+  textbox.style.display = "none";
+}
+
+function aggiornaPosizioneTextbox(event) {
+  var textbox = document.getElementById("hoverTextbox");
+  textbox.style.left = (event.clientX + 10) + "px"; // Aggiunge 10 pixel per separare il cursore dalla textbox
+  textbox.style.top = (event.clientY + window.scrollY + 10) + "px"; // Aggiunge 10 pixel per separare il cursore dalla textbox
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*document.addEventListener("DOMContentLoaded", function () {
+  let checkbox = document.getElementById('checkbox1');
+  let button = document.getElementById('bottone');
+  let message = document.getElementById('hoverMessage');
+
+  document.addEventListener('mousemove', function (event) {
+      if (!checkbox.checked) {
+          if (isCursorOverButton(event, button)) {
+              showHoverMessage();
+              updateHoverMessagePosition(event.clientX, event.clientY);
+          } else {
+              hideHoverMessage();
+          }
+      } else {
+          hideHoverMessage();
+      }
+  });
+
+  function isCursorOverButton(event, button) {
+      let buttonRect = button.getBoundingClientRect();
+      return (
+          event.clientX >= buttonRect.left &&
+          event.clientX <= buttonRect.right &&
+          event.clientY >= buttonRect.top &&
+          event.clientY <= buttonRect.bottom
+      );
+  }
+
+  function showHoverMessage() {
+      message.style.display = 'block';
+  }
+
+  function updateHoverMessagePosition(x, y) {
+      message.style.left = x + 'px';
+      message.style.top = y + 'px';
+  }
+
+  function hideHoverMessage() {
+      message.style.display = 'none';
+  }
+});
+function applyCheckboxStyles() {
+  button.style.backgroundColor = '#00ffff';
+  button.style.color = '#051339';
+  button.style.border = '0px';
+  button.addEventListener('mouseover', function () {
+      button.style.cursor = 'pointer';
+      button.style.boxShadow = '0px 0px 20px 3px #00ffff';
+  });
+  button.addEventListener('mouseout', function () {
+      button.style.boxShadow = 'none';
+  });
+}
+function removeCheckboxStyles() {
+  button.style.backgroundColor = 'transparent'; 
+  button.style.color = 'white';
+  button.style.border = '';
+  button.removeEventListener('mouseover', function () {
+      button.style.cursor = 'pointer';
+      button.style.boxShadow = '0px 0px 20px 3px #00ffff';
+  });
+  button.removeEventListener('mouseout', function () {
+      button.style.boxShadow = 'none';
+  });
+}*/
+
