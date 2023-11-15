@@ -196,7 +196,7 @@ function CreaRisultato(percent){
 
     
     <circle cx="100" cy="100" r="90" fill="none" stroke="#d20094" transform="rotate(270 100 100)" stroke-width="10"  stroke-dasharray="`+ dashLength +`, 565.48" />
-</svg>`
+  </svg>`
 
 }
 

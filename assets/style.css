@@ -57,8 +57,7 @@ ul{
 
 
 #bottone{
-    cursor: pointer;
-    box-shadow: 0px 0px 20px 3px #00ffff ;
+    
     color: #0b113b;
     font-family: 'Inter';
     width: 9.5em;
@@ -68,6 +67,10 @@ ul{
     font-size: 1.5em;
     font-weight: 1000;
     border: 0px;
+}
+#bottone:hover{
+    cursor: pointer;
+    box-shadow: 0px 0px 20px 3px #00ffff ;
 }
 
 
