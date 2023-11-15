@@ -209,7 +209,7 @@ let percentage = 100;
 function creaTimer(){
   
         
-  let elapsedSeconds = 0;
+  let elapsedSeconds = 20;
   let creadivtimer=document.createElement("div")
   creadivtimer.id="progress-container2"
   let creasvg2 = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -240,20 +240,29 @@ function creaTimer(){
   creasvg2.appendChild(creacircle1)
   creasvg2.appendChild(creacircle2)
   creasvg2.appendChild(circletext)
-  const durationInSeconds = 23;
+  const durationInSeconds = 20;
   const initialDashOffset = parseFloat(getComputedStyle(creacircle2).strokeDasharray);
   const dashOffsetPerSecond = initialDashOffset / durationInSeconds;
 
   function startTimer() {
-    
-    const timerInterval = setInterval(() => {
-      elapsedSeconds++;
-      const dashOffset = Math.max(0, initialDashOffset - dashOffsetPerSecond * elapsedSeconds);
-      creacircle2.style.strokeDashoffset = dashOffset;
-      circletext.innerHTML = `SECONDS
-      ${durationInSeconds - 3 - elapsedSeconds}
+    let dashOffset = Math.max(0, initialDashOffset - dashOffsetPerSecond * elapsedSeconds);
+    creacircle2.style.strokeDashoffset = dashOffset;
+    console.log(creacircle2.style.strokeDashoffset)
+    circletext.innerHTML = `SECONDS
+      ${elapsedSeconds}
       REMAINING`;
-      if (elapsedSeconds >= durationInSeconds) {
+    const timerInterval = setInterval(() => {
+      elapsedSeconds--;
+      dashOffset = -1*Math.max(0, initialDashOffset - dashOffsetPerSecond * elapsedSeconds);
+      console.log(dashOffset)
+      creacircle2.style.strokeDashoffset = dashOffset;
+      
+
+      
+      circletext.innerHTML = `SECONDS
+      ${elapsedSeconds}
+      REMAINING`;
+      if (elapsedSeconds <= 0) {
         clearInterval(timerInterval);
       }
     }, 1000);
@@ -303,7 +312,7 @@ function CreaBottone(domanda){
     let creaquestion=document.createElement("label")
     creaquestion.classList="labelquestion" 
     creaquestion.innerHTML=`QUESTION `+domandacorrente+`<span style="color:#d20094">/10</span>`
-    createsto.innerText=domanda.question
+    createsto.innerHTML=domanda.question
     checkpos.appendChild(creadiv)
     creadiv.appendChild(createsto)
     let divrisposte=document.createElement("div")
@@ -428,7 +437,7 @@ function rimuovihover(){
     trovabottone.removeAttribute("onmouseover")
     trovabottone.removeAttribute("onmousemout")
   }
-  if(!trovacheckbox.checked)
+  else
   {
     trovabottone.setAttribute("onmousemove","aggiornaPosizioneTextbox(event)")
     trovabottone.setAttribute("onmouseover","mostraTextbox()")

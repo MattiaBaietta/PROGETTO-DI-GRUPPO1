@@ -248,7 +248,8 @@ svg:hover path{
 
 #progress-circle {
     fill: transparent;
-      stroke: rgb(247, 247, 247);
+      stroke: #00ffff;
+      color: transparent;
       stroke-width: 10;
       stroke-dasharray: 377.099;
       transition: stroke-dashoffset 0.05s ease;
@@ -256,7 +257,7 @@ svg:hover path{
 
 #outer-circle{
     fill: transparent;
-    stroke: #00ffff;
+    stroke: transparent;
     stroke-width: 10;
 }
 footer{
