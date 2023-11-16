@@ -1,10 +1,50 @@
+const apiUrl=`https://opentdb.com/api.php?amount=10&category=18&difficulty=hard`
 let checkpos = document.getElementsByTagName("main")
 let domandacorrente = 1
 let creadivpagina3 = document.createElement("div")
 creadivpagina3.classList = "classedivpg3"
-let numerodomande=15//aggiungere variabile presa da input
+let numerodomande=10//aggiungere variabile presa da input
 let difficulty="easy"//aggiungere variabile presa da input
 let rating=0
+
+
+let arrayDati = [];
+
+fetch(apiUrl)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Errore nella richiesta API');
+    }
+    return response.json();
+  })
+  .then(data => {
+    // Stampa la risposta completa sulla console per analizzarla
+    console.log('Risposta JSON completa:', data);
+
+    // Gestisci i dati in base alla loro struttura specifica
+    // ... (Aggiungi qui la logica necessaria in base alla struttura dei dati)
+
+    // Esempio: Se i dati sono un oggetto con un campo "results" che è un array
+    if (data && data.results && Array.isArray(data.results)) {
+      arrayDati = data.results;
+      console.log('Dati copiati nell\'array:', arrayDati);
+
+      // O puoi chiamare una funzione e passare l'arrayDati come argomento
+      miaFunzione(arrayDati);
+    } else {
+      console.error('Formato dei dati non gestito:', data);
+    }
+  })
+  .catch(error => {
+    console.error('Errore durante la richiesta API:', error);
+  });
+
+function miaFunzione(dati) {
+  // Fai qualcosa con i dati
+  console.log('Dati ricevuti:', dati);
+  // ...
+}
+
 
 const questions = [
   {
@@ -128,7 +168,7 @@ function PickRandomQuestion(ListaDomande,num) { //,Numerodomande,Difficoulty qua
     clearTimeout(timeout)
     timeout = setTimeout(function () {
 
-      PickRandomQuestion(questions,numerodomande)
+      PickRandomQuestion(arrayDati,numerodomande)
 
     }, 20000)
 
@@ -307,7 +347,7 @@ function CreaBottone(domanda) {
   creapulsante.addEventListener("click", function () {
     contatore++
 
-    PickRandomQuestion(questions,numerodomande)
+    PickRandomQuestion(arrayDati,numerodomande)
 
 
   })
@@ -323,7 +363,7 @@ function CreaBottone(domanda) {
 
     creapulsante.addEventListener("click", function () {
 
-      PickRandomQuestion(questions,numerodomande)
+      PickRandomQuestion(arrayDati,numerodomande)
     })
   }
   domandacorrente++
@@ -402,7 +442,7 @@ function PrimaPagina() {
     if (trovacheckbox.checked) {
 
       checkpos[0].innerHTML = ""
-      PickRandomQuestion(questions,numerodomande)
+      PickRandomQuestion(arrayDati,numerodomande)
     }
     else {
 
@@ -424,8 +464,10 @@ function rimuovihover() {
     trovabottone.removeAttribute("onmousemove")
     trovabottone.removeAttribute("onmouseover")
     trovabottone.removeAttribute("onmousemout")
+    trovabottone.removeAttribute("style")
   }
   else {
+    trovabottone.style.cursor="not-allowed"
     trovabottone.setAttribute("onmousemove", "aggiornaPosizioneTextbox(event)")
     trovabottone.setAttribute("onmouseover", "mostraTextbox()")
     trovabottone.setAttribute("onmouseout", "nascondiTextbox()")
@@ -435,11 +477,13 @@ rimuovihover()
 function mostraTextbox() {
   var textbox = document.getElementById("hoverTextbox");
   textbox.style.display = "block";
+  
 }
 
 function nascondiTextbox() {
   var textbox = document.getElementById("hoverTextbox");
   textbox.style.display = "none";
+
 }
 
 function aggiornaPosizioneTextbox(event) {
@@ -453,7 +497,8 @@ function aggiornaPosizioneTextbox(event) {
 function addFeedback(){
   checkpos[0].innerHTML=""
   checkpos[0].style="text-align: center;"
-  checkpos[0].classList.add="firstText"
+  checkpos[0].id="main2"
+  //checkpos[0].classList.add="firstText"
   let createbutton = document.createElement("input")
   createbutton.setAttribute("type", "button")
   createbutton.id = "bottone"
@@ -544,13 +589,25 @@ function addFeedback(){
     let creadivmodal=document.createElement("div")
     creadivmodal.id="myModal"
     creadivmodal.classList="modal"
-    creadivmodal.innerHTML=`
+    if(rating==0||creainput.value=="")
+    {
+      creadivmodal.innerHTML=`
+ 
+      <div class="modal-content">
+      <span class="close">&times;</span>
+      <p style="color:black">Si prega di dare una valutazione al test</p>
+      </div>`
+    }
+    else{
+      creadivmodal.innerHTML=`
  
     <div class="modal-content">
     <span class="close">&times;</span>
     <p style="color:black">Grazie per il feedback a `+rating+` stelle</p>
     <p style="color:black">Testo feedback: `+ creainput.value +`</p>
     </div>`
+    }
+    
     checkpos[0].appendChild(creadivmodal)
     let modal = document.getElementById("myModal");
     let span = document.getElementsByClassName("close")[0]
@@ -571,7 +628,41 @@ function addFeedback(){
 
 }
 
-
+function selectDif(){
+  
+  let elementoTitolo = document.createElement("h1")
+  
+  checkpos[0].id="main3"
+  checkpos[0].appendChild(elementoTitolo)
+  elementoTitolo.textContent = "SELEZIONA DIFFICOLTA"
+  let contenitoreBottone = document.createElement("div")
+  checkpos[0].appendChild(contenitoreBottone)
+  contenitoreBottone.classList.add("bottoni")
+  let arrayBottoni = ["easy","medium","hard"]
+  for (let i = 0; i < arrayBottoni.length; i++) {
+    let button = document.createElement("button");
+    button.textContent = arrayBottoni[i]
+    contenitoreBottone.appendChild(button);
+    let arrayDiID = ["green","orange","red"]
+    button.addEventListener("click",function(){
+      difficulty=arrayBottoni[i]
+      console.log(difficulty)
+    })
+    
+    button.id = arrayDiID[i]
+  }
+  let elementoTitolo2 = document.createElement("h2")
+  checkpos[0].appendChild(elementoTitolo2)
+  elementoTitolo2.textContent = "SELEZIONA NUMERO DI DOMANDE"
+  let inputDiDomande = document.createElement("input")
+  inputDiDomande.type="number"
+  inputDiDomande.setAttribute("min","0")
+  
+  inputDiDomande.setAttribute("step","1")
+  checkpos[0].appendChild(inputDiDomande)
+  return inputDiDomande.value 
+}
+//selectDif()
 
 
 

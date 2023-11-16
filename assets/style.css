@@ -1,34 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;700&display=swap');
-body{
+
+body {
     background-image: url(../images/bg.jpg);
     background-size: 100%;
     color: white;
     font-family: 'Inter';
-    
+
     margin: 2em 8em;
     background-repeat: no-repeat;
 }
-.hide{
+
+.hide {
     display: none;
 }
+
 /*classe font testo pagina welcome*/
-.testop1{ 
+.testop1 {
     font-size: 16px;
 }
-img{
+
+img {
     width: 15%;
     padding: 0.5em;
     margin-left: 0.93em;
 }
-h1{
+
+h1 {
     margin-bottom: 0px;
     font-family: 'Outfit';
     font-size: 60px;
     font-weight: 400;
 }
-h2{    
+
+h2 {
     font-family: 'Outfit', sans-serif;
     font-size: 45px;
     font-weight: lighter;
@@ -36,31 +42,35 @@ h2{
     text-align: center;
     color: white;
     margin-bottom: 20px;
- }
-h3{
+}
+
+h3 {
     color: #d20094;
     font-size: 30px;
     margin-bottom: 0px;
 }
-form{
+
+form {
     text-align: center;
     margin-left: 7%;
     margin-right: 7%;
-   
 
- }
-span{
+
+}
+
+span {
     font-weight: bolder;
 }
-ul{
+
+ul {
     margin-top: 3em;
     padding-left: 30px;
     margin-bottom: 6em;
 }
 
 
-#bottone{
-    
+#bottone {
+
     color: #0b113b;
     font-family: 'Inter';
     width: 9.5em;
@@ -72,28 +82,30 @@ ul{
     border: 0px;
 
 
-    
+
 }
-.divrisposte{
+
+.divrisposte {
     position: fixed;
     left: 60px;
     top: 450px;
     right: 30px;
 }
-#bottone:hover{
+
+#bottone:hover {
     cursor: pointer;
-    box-shadow: 0px 0px 20px 3px #00ffff ;
+    box-shadow: 0px 0px 20px 3px #00ffff;
 }
 
-.classestelline{
-    
+.classestelline {
+
     width: 6.5%;
     cursor: pointer;
     margin-bottom: 2.3em;
 }
 
 
-.buttonrisposte{
+.buttonrisposte {
     font-size: 23px;
     font-weight: bold;
     display: inline-block;
@@ -112,9 +124,9 @@ ul{
 
 
 
- }
+}
 
- .bottonefooter{
+.bottonefooter {
     box-shadow: 0px 0px 20px -5px #00ffffb6;
     cursor: pointer;
     color: white;
@@ -126,68 +138,74 @@ ul{
     font-weight: 1000;
     border: 5px solid white;
     border-style: solid;
-   
+
 }
 
- .buttonrisposte:hover {
+.buttonrisposte:hover {
     background-color: #d20094;
- }
- .buttonrisposte:first-of-type:active{
-    background-color: green;
- }
- .buttonrisposte:not(first-of-type):active{
-    background-color: red;
- }
+}
 
- .risposte {
+.buttonrisposte:first-of-type:active {
+    background-color: green;
+}
+
+.buttonrisposte:not(first-of-type):active {
+    background-color: red;
+}
+
+.risposte {
     background-color: #900080;
     border-radius: 2px;
     text-align: center;
     margin: 1.5px;
 
- }
+}
 
- .labelquestion{
+.labelquestion {
     position: fixed;
     bottom: 60px;
-    right: 580px;
+    right: 500px;
     color: white;
     font-size: 25px;
     display: block;
 
- }
- .elemento{
+}
+
+.elemento {
     max-width: 175px;
- }
- .elemento h4{
+}
+
+.elemento h4 {
     display: inline-block;
     color: white;
     padding-top: -20px;
     font-family: 'Outfit', sans-serif;
-    font-weight: 100!important;
+    font-weight: 100 !important;
     font-size: 3.5em;
     margin-bottom: 0px;
     margin-top: 0px;
- }
-
-.classedivpg3{
-
-        
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-     
 }
-.classedivpg3 > div{
+
+.classedivpg3 {
+
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.classedivpg3>div {
     display: inline-block;
 }
-.firstText{
+
+.firstText {
     font-family: 'Outfit', sans-serif;
     text-align: center;
 }
 
 
-.firstText h1{
+.firstText h1 {
     font-size: 4em;
     text-align: center;
     color: white;
@@ -195,21 +213,49 @@ ul{
     line-height: 2px;
     text-align: center;
 }
-.firstText p{
-        text-align: center;
-        color: white;
-        font-size: 2em;
+
+.firstText p {
+    text-align: center;
+    color: white;
+    font-size: 2em;
 }
+
+#main2{
+    font-size: 1.7em;
+}
+#main2 h1{
+    margin-top: 1.5em;
+    font-weight: 600;
+}
+#main2 p:first-of-type{
+    margin-left: 13%;
+    margin-right: 13%;
+} 
+#main2 input[type="button"] {
+    width:1em;
+    color: #0b113b;
+    font-family: 'Inter';
+    width: 9.5em;
+    height: 2.7em;
+    background-color: #00ffff;
+    margin-right: 29%;
+    margin-top: 1.8em;
+    font-size: 1em;
+    font-weight: 1000;
+    border: 0px;
+}
+
+
 #contenitore {
     padding-left: 70px;
     padding-right: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
- 
+
 }
 
- #progress-container2{
+#progress-container2 {
     width: 150px;
     height: 150px;
     position: relative;
@@ -218,41 +264,36 @@ ul{
 
 #progress-circle {
     fill: transparent;
-      stroke: #00ffff;
-      color: transparent;
-      stroke-width: 10;
-      stroke-dasharray: 377.099;
-      transition: stroke-dashoffset 0.05s ease;
+    stroke: #00ffff;
+    color: transparent;
+    stroke-width: 10;
+    stroke-dasharray: 377.099;
+    transition: stroke-dashoffset 0.05s ease;
 }
 
-#outer-circle{
+#outer-circle {
     fill: transparent;
     stroke: transparent;
-    
+
     stroke-width: 10;
 }
-footer{
+
+footer {
     position: fixed;
     bottom: 25px;
     right: 65%;
     left: 41%;
- }
+}
 
-#progress-text{
-    text-anchor: middle; /* Centra il testo rispetto al punto di ancoraggio /
+#progress-text {
+    text-anchor: middle;
+    /* Centra il testo rispetto al punto di ancoraggio /
     dominant-baseline: middle; / Centra il testo verticalmente rispetto al punto di ancoraggio */
     font-size: 15px;
     font-family: Arial, sans-serif;
     fill: white;
-    
-    
-}
 
-#checkbox1{
-    cursor: pointer; 
-    margin-right: 8px;
-    border: 20px;
-    background-color: aquamarine;
+
 }
 
 #hoverTextbox {
@@ -267,28 +308,31 @@ footer{
     border: 1px solid #ccc;
     border-radius: 4px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  }
-.classestelline{
+}
+
+.classestelline {
     cursor: pointer;
     margin-bottom: 2.3em;
 }
 
 
-.classeblue{
-    fill:#00ffff;
-}
-.classenera{
-    fill:#0B113B;
+.classeblue {
+    fill: #00ffff;
 }
 
-#lilla{
+.classenera {
+    fill: #0B113B;
+}
+
+#lilla {
     width: 78%;
     margin-top: 8px;
     margin-left: 4.3em;
     height: 3px;
     background-color: #9b1a85;
 }
-#write{
+
+#write {
     color: white;
     font-family: 'Inter';
     width: 80%;
@@ -301,39 +345,132 @@ footer{
 }
 
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
 }
 
 /* Modal Content */
 .modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
 }
 
 /* The Close Button */
 .close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }
+
+
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"]+label {
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+}
+
+input[type="checkbox"]+label:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 17px;
+    height: 17px;
+    border: 2px solid white;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked+label:before {
+    background-color: #00ffff;
+}
+
+input[type="checkbox"]:checked+label:after {
+    content: "\2713";
+    font-size: 25px;
+    color: #900080;
+    position: absolute;
+    left: 2px;
+    top: -10px;
+}
+
+#main3 h1{
+    text-align: center;
+    margin-bottom: 70px;
+    
+}
+#main3 h2{
+    margin-top: 50px;
+}
+#main3 input{
+        margin-left:330px ;
+        margin-top: 50px;
+        width: 300px;
+        height: 50px;
+        font-size: 40px;
+
+}
+.bottoni{
+    text-align: center;
+    margin-top: 50px;
+ }
+ .bottoni button{
+    font-size: 23px;
+     font-weight: bold;
+     display: inline-block;
+     background-color: traspa;
+     color: black;
+     width: 25%;
+     height: 90px;
+     border-color: white;
+     border-radius: 50px;
+     margin: 20px;
+     padding: 1px;
+     color: white;
+     margin-left: 65px;
+     background-color: rgba(255, 255, 255, 0.167);
+     box-shadow: 0px -3px 0px -1px;
+ 
+ }
+ #green:hover{
+    background-color: green;
+ }
+ #orange:hover{
+    background-color: rgb(223, 92, 44);
+ }
+ #red:hover{
+    background-color: rgb(146, 0, 0);
+ }
