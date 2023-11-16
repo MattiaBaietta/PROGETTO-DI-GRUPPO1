@@ -4,7 +4,7 @@ let creadivpagina3 = document.createElement("div")
 creadivpagina3.classList = "classedivpg3"
 let numerodomande=15//aggiungere variabile presa da input
 let difficulty="easy"//aggiungere variabile presa da input
-
+let rating=0
 
 const questions = [
   {
@@ -522,7 +522,7 @@ function addFeedback(){
     }
   }
   function funzioneclick(i) {     
-    var rating=i
+    rating=i
     console.log(rating) 
     for(let i2=10;i2>0;i2--){
       
@@ -536,14 +536,38 @@ function addFeedback(){
       document.querySelector(`svg[data-rating="`+i+`"]`).children[0].style.fill="#00FFFF";
     }
   }
-  
   checkpos[0].appendChild(createbutton)
-  createbutton.addEventListener("click",function(){
-    let valoretesto=creainput.value
-    console.log(valoretesto)
+  
+  
+ 
+  createbutton.addEventListener("click",function modale(){
+    let creadivmodal=document.createElement("div")
+    creadivmodal.id="myModal"
+    creadivmodal.classList="modal"
+    creadivmodal.innerHTML=`
+ 
+    <div class="modal-content">
+    <span class="close">&times;</span>
+    <p style="color:black">Grazie per il feedback a `+rating+` stelle</p>
+    <p style="color:black">Testo feedback: `+ creainput.value +`</p>
+    </div>`
+    checkpos[0].appendChild(creadivmodal)
+    let modal = document.getElementById("myModal");
+    let span = document.getElementsByClassName("close")[0]
+    modal.style.display = "block";
+    
+    span.addEventListener("click",function() {
+      modal.style.display = "none";
+    })
+    window.addEventListener("click",function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    })
+    
 
   })
-
+  
 
 }
 
