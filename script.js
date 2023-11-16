@@ -1,4 +1,4 @@
-const apiUrl=`https://opentdb.com/api.php?amount=10&category=18&difficulty=hard`
+
 let checkpos = document.getElementsByTagName("main")
 let domandacorrente = 1
 let creadivpagina3 = document.createElement("div")
@@ -10,40 +10,7 @@ let rating=0
 
 let arrayDati = [];
 
-fetch(apiUrl)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Errore nella richiesta API');
-    }
-    return response.json();
-  })
-  .then(data => {
-    // Stampa la risposta completa sulla console per analizzarla
-    console.log('Risposta JSON completa:', data);
 
-    // Gestisci i dati in base alla loro struttura specifica
-    // ... (Aggiungi qui la logica necessaria in base alla struttura dei dati)
-
-    // Esempio: Se i dati sono un oggetto con un campo "results" che è un array
-    if (data && data.results && Array.isArray(data.results)) {
-      arrayDati = data.results;
-      console.log('Dati copiati nell\'array:', arrayDati);
-
-      // O puoi chiamare una funzione e passare l'arrayDati come argomento
-      miaFunzione(arrayDati);
-    } else {
-      console.error('Formato dei dati non gestito:', data);
-    }
-  })
-  .catch(error => {
-    console.error('Errore durante la richiesta API:', error);
-  });
-
-function miaFunzione(dati) {
-  // Fai qualcosa con i dati
-  console.log('Dati ricevuti:', dati);
-  // ...
-}
 
 
 const questions = [
@@ -152,7 +119,7 @@ function PickRandomQuestion(ListaDomande,num) { //,Numerodomande,Difficoulty qua
   let i2 = 0
   checkpos[0].style = "margin-top:150px"
   
-
+  console.log(ListaDomande)
   i2 = Math.floor(Math.random() * ListaDomande.length)
   if (document.getElementById("progress-container2")) {
     document.getElementById("progress-container2").remove()
@@ -163,7 +130,7 @@ function PickRandomQuestion(ListaDomande,num) { //,Numerodomande,Difficoulty qua
 
   if (ListaDomande != 0) {
     creaTimer()
-    document.getElementById("main").innerHTML = ""
+    checkpos[0].innerHTML = ""
     CreaBottone(ListaDomande[i2])
     clearTimeout(timeout)
     timeout = setTimeout(function () {
@@ -179,8 +146,8 @@ function PickRandomQuestion(ListaDomande,num) { //,Numerodomande,Difficoulty qua
     clearTimeout(timeout)
     
     //creare classe css per il risultato
-    document.getElementById("main").innerHTML=""
-    document.getElementById("main").style="margin-top:50px"
+    checkpos[0].innerHTML=""
+    checkpos[0].style="margin-top:50px"
     let creabottonefooter=document.createElement("input")
     let footerpos=document.getElementsByTagName("footer")
     creabottonefooter.type="button"
@@ -324,7 +291,6 @@ function creaTimer() {
 }
 function CreaBottone(domanda) {
   
-  let checkpos = document.getElementById("main")
   let creaform = document.createElement("form")
   let creadiv = document.createElement("div")
   let createsto = document.createElement("h2")
@@ -334,7 +300,7 @@ function CreaBottone(domanda) {
   creaquestion.classList = "labelquestion"
   creaquestion.innerHTML = `QUESTION ` + domandacorrente + `<span style="color:#d20094">/`+numerodomande+`</span>`
   createsto.innerHTML = domanda.question
-  checkpos.appendChild(creadiv)
+  checkpos[0].appendChild(creadiv)
   creadiv.appendChild(createsto)
   let divrisposte = document.createElement("div")
   divrisposte.classList = "divrisposte"
@@ -442,7 +408,8 @@ function PrimaPagina() {
     if (trovacheckbox.checked) {
 
       checkpos[0].innerHTML = ""
-      PickRandomQuestion(arrayDati,numerodomande)
+      selectDif()
+      //PickRandomQuestion(arrayDati,numerodomande)
     }
     else {
 
@@ -644,9 +611,13 @@ function selectDif(){
     button.textContent = arrayBottoni[i]
     contenitoreBottone.appendChild(button);
     let arrayDiID = ["green","orange","red"]
-    button.addEventListener("click",function(){
+    button.addEventListener("click",async function(){
       difficulty=arrayBottoni[i]
-      console.log(difficulty)
+      console.log(numerodomande)
+      arrayDati= await changeDiff(arrayBottoni[i],inputDiDomande.value)
+      
+      PickRandomQuestion(arrayDati,numerodomande)
+
     })
     
     button.id = arrayDiID[i]
@@ -660,16 +631,15 @@ function selectDif(){
   
   inputDiDomande.setAttribute("step","1")
   checkpos[0].appendChild(inputDiDomande)
-  return inputDiDomande.value 
+  
 }
 //selectDif()
 
 
-
-
-
-
-
-
-
-
+async function changeDiff(diff,num){
+  numerodomande=num
+  const apiUrl=`https://opentdb.com/api.php?amount=`+num+`&category=18&difficulty=`+diff
+  const response = await fetch(apiUrl);
+  const data = await response.json();
+  return data.results
+}
