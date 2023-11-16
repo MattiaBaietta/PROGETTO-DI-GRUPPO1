@@ -2,7 +2,8 @@ let checkpos = document.getElementsByTagName("main")
 let domandacorrente = 1
 let creadivpagina3 = document.createElement("div")
 creadivpagina3.classList = "classedivpg3"
-let numerodomande=10
+let numerodomande=15//aggiungere variabile presa da input
+let difficulty="easy"//aggiungere variabile presa da input
 
 
 const questions = [
@@ -107,7 +108,7 @@ const questions = [
 
 let contatore = 0
 let timeout
-function PickRandomQuestion(ListaDomande) { //,Numerodomande,Difficoulty quando farà gli extra
+function PickRandomQuestion(ListaDomande,num) { //,Numerodomande,Difficoulty quando farà gli extra
   let i2 = 0
   checkpos[0].style = "margin-top:150px"
   
@@ -127,7 +128,7 @@ function PickRandomQuestion(ListaDomande) { //,Numerodomande,Difficoulty quando 
     clearTimeout(timeout)
     timeout = setTimeout(function () {
 
-      PickRandomQuestion(questions)
+      PickRandomQuestion(questions,numerodomande)
 
     }, 20000)
 
@@ -169,24 +170,24 @@ function PickRandomQuestion(ListaDomande) { //,Numerodomande,Difficoulty quando 
     creacorrect.innerText="Correct "
     creaspan=document.createElement("span")
     creaspan.style="font-weight:700;font-size:3.5em"
-    creaspan.innerText=(contatore/10)*100+"%"
+    creaspan.innerText=parseInt((contatore/num)*100)+"%"
     creapquestion=document.createElement("p")
     creapquestion.style="font-weight:200;margin-top: 0;"
-    creapquestion.innerText=contatore + "/10 questions"
+    creapquestion.innerText=contatore + `/`+num+` questions`
     creawrong.innerText="Wrong "
     creaspanwrong=document.createElement("span")
     creaspanwrong.style="font-weight:700;font-size:3.5em"
-    creaspanwrong.innerText=(10-contatore)/10*100+"%"
+    creaspanwrong.innerText=parseInt((num-contatore)/num*100)+"%"
     creapquestionwrong=document.createElement("p")
     creapquestionwrong.style="font-weight:200;margin-top: 0;"
-    creapquestionwrong.innerText=(10-contatore) + "/10 questions"
+    creapquestionwrong.innerText=(num-contatore) + `/`+numerodomande+`questions`
     creadivpagina3.appendChild(creadivcorrect)
     creadivcorrect.appendChild(creacorrect)
     creadivcorrect.appendChild(creaspan)
     creadivcorrect.appendChild(creapquestion)
     
-    
-    CreaRisultato(100-(contatore*10))
+    console.log(parseInt((num*num)-(contatore*num)))
+    CreaRisultato(parseInt((contatore/num)*100))
     creadivpagina3.appendChild(creadivwrong)
     creadivwrong.appendChild(creawrong)
     creadivwrong.appendChild(creaspanwrong)
@@ -291,7 +292,7 @@ function CreaBottone(domanda) {
   let creapulsante = document.createElement("button")
   let creaquestion = document.createElement("label")
   creaquestion.classList = "labelquestion"
-  creaquestion.innerHTML = `QUESTION ` + domandacorrente + `<span style="color:#d20094">/10</span>`
+  creaquestion.innerHTML = `QUESTION ` + domandacorrente + `<span style="color:#d20094">/`+numerodomande+`</span>`
   createsto.innerHTML = domanda.question
   checkpos.appendChild(creadiv)
   creadiv.appendChild(createsto)
@@ -306,7 +307,7 @@ function CreaBottone(domanda) {
   creapulsante.addEventListener("click", function () {
     contatore++
 
-    PickRandomQuestion(questions)
+    PickRandomQuestion(questions,numerodomande)
 
 
   })
@@ -322,15 +323,23 @@ function CreaBottone(domanda) {
 
     creapulsante.addEventListener("click", function () {
 
-      PickRandomQuestion(questions)
+      PickRandomQuestion(questions,numerodomande)
     })
   }
   domandacorrente++
 }
 function CreaRisultato(percent) {
+  let stringarisultato=""
+  console.log(percent)
+  if(percent>=60)
+  {
+    stringarisultato=`<text  x="280" y="120" text-anchor="middle" alignment-baseline="middle" fill="white"><tspan x="250" dy="1.2em" style="font-weight: bold;font-size:1.1em">Congratulations!</tspan><tspan fill="#00ffff" x="250" dy="1.2em" style="font-weight: bold;font-size:1.1em" >You passed the exam.</tspan><tspan x="250" dy="3.5em"> We'll send you the certificate</tspan><tspan x="250" dy="1.2em">in few minutes.</tspan><tspan x="250" dy="1.2em">Check you email (including</tspan><tspan x="250" dy="1.2em">promotions/spam folder)<tspan></text>`
+  }else
+  {
+    stringarisultato=`<text  x="280" y="120" text-anchor="middle" alignment-baseline="middle" fill="white"><tspan x="250" dy="1.2em" style="font-weight: bold;font-size:1.1em">Failed!</tspan><tspan fill="#d20094" x="250" dy="1.2em" style="font-weight: bold;font-size:1.1em" >You didn't pass the exam.</tspan><tspan x="250" dy="3.5em">Feel free to retry again.</tspan><tspan x="250" dy="1.2em"></tspan><tspan x="250" dy="1.2em">press f5 to refresh the page</tspan><tspan x="250" dy="1.2em">and to do it again<tspan></text>`
+  }
 
-
-  percent = Math.min(100, Math.max(0, percent));
+  percent = 100-(Math.min(100, Math.max(0, percent)));
   let dashLength = (percent / 100) * 1131;
   let creadivsvg = document.createElement("div")
   creadivsvg.id = "progress-container"
@@ -338,8 +347,7 @@ function CreaRisultato(percent) {
   <svg id="circular-progress" width="500" height="500" xmlns="http://www.w3.org/2000/svg">
   
     
-    <circle  cx="-20" cy="250" r="180" fill="none" stroke="#00ffff" transform="rotate(270 100 100)" stroke-width="57" />
-    <text  x="280" y="120" text-anchor="middle" alignment-baseline="middle" fill="white"><tspan x="250" dy="1.2em" style="font-weight: bold;font-size:1.1em">Congratulations!</tspan><tspan fill="#00ffff" x="250" dy="1.2em" style="font-weight: bold;font-size:1.1em" >You passed the exam.</tspan><tspan x="250" dy="3.5em"> We'll send you the certificate</tspan><tspan x="250" dy="1.2em">in few minutes.</tspan><tspan x="250" dy="1.2em">Check you email (including</tspan><tspan x="250" dy="1.2em">promotions/spam folder)<tspan></text>
+    <circle  cx="-20" cy="250" r="180" fill="none" stroke="#00ffff" transform="rotate(270 100 100)" stroke-width="57" />`+stringarisultato+`  
 
     
     <circle cx="-20" cy="250" r="180" fill="none" stroke="#d20094" transform="rotate(270 100 100)" stroke-width="60"  stroke-dasharray="`+ dashLength + `, 1131" />
@@ -394,7 +402,7 @@ function PrimaPagina() {
     if (trovacheckbox.checked) {
 
       checkpos[0].innerHTML = ""
-      PickRandomQuestion(questions)
+      PickRandomQuestion(questions,numerodomande)
     }
     else {
 
@@ -446,6 +454,10 @@ function addFeedback(){
   checkpos[0].innerHTML=""
   checkpos[0].style="text-align: center;"
   checkpos[0].classList.add="firstText"
+  let createbutton = document.createElement("input")
+  createbutton.setAttribute("type", "button")
+  createbutton.id = "bottone"
+  createbutton.value = "MORE INFO"
   document.getElementsByClassName("bottonefooter")[0].remove()
   let creah2=document.createElement("h1")
   //creah2.classList="h1feedback"
@@ -509,22 +521,28 @@ function addFeedback(){
       document.querySelector(`svg[data-rating="`+i2+`"]`).children[0].classList="classenera"
     }
   }
-  function funzioneclick(i) {      
+  function funzioneclick(i) {     
+    var rating=i
+    console.log(rating) 
     for(let i2=10;i2>0;i2--){
       
       document.querySelector(`svg[data-rating="`+i2+`"]`).removeEventListener("mouseout",()=>{mousedentro(i2)})
       document.querySelector(`svg[data-rating="`+i2+`"]`).removeEventListener("mouseover",()=>{ mousefuori(i2)})
+      
       
     }
     for(i;i>0;i--)
     {
       document.querySelector(`svg[data-rating="`+i+`"]`).children[0].style.fill="#00FFFF";
     }
-    
-    //nuovoSvg.removeEventListener("click",funzioneclick(i))
   }
   
-  
+  checkpos[0].appendChild(createbutton)
+  createbutton.addEventListener("click",function(){
+    let valoretesto=creainput.value
+    console.log(valoretesto)
+
+  })
 
 
 }
