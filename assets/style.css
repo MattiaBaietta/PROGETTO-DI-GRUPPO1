@@ -145,11 +145,11 @@ ul {
     background-color: #d20094;
 }
 
-.buttonrisposte:first-of-type:active {
+#bottoneverde:active {
     background-color: green;
 }
 
-.buttonrisposte:not(first-of-type):active {
+#bottonerosso:active {
     background-color: red;
 }
 
@@ -349,7 +349,7 @@ footer {
     /* Hidden by default */
     position: fixed;
     /* Stay in place */
-    z-index: 1;
+    z-index: 2;
     /* Sit on top */
     padding-top: 100px;
     /* Location of the box */
@@ -374,6 +374,7 @@ footer {
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
+    z-index: 3;
 }
 
 /* The Close Button */
@@ -391,6 +392,16 @@ footer {
     cursor: pointer;
 }
 
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(8px);
+    z-index: 1; /* Assicura che l'overlay sia sopra tutto il resto */
+  }
 
 input[type="checkbox"] {
     display: none;

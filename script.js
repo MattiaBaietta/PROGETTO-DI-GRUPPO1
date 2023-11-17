@@ -118,8 +118,6 @@ let timeout
 function PickRandomQuestion(ListaDomande,num) { //,Numerodomande,Difficoulty quando farà gli extra
   let i2 = 0
   checkpos[0].style = "margin-top:150px"
-  
-  console.log(ListaDomande)
   i2 = Math.floor(Math.random() * ListaDomande.length)
   if (document.getElementById("progress-container2")) {
     document.getElementById("progress-container2").remove()
@@ -305,34 +303,39 @@ function CreaBottone(domanda) {
   let divrisposte = document.createElement("div")
   divrisposte.classList = "divrisposte"
   creadiv.appendChild(divrisposte)
-  creapulsante.innerText = domanda.correct_answer
 
-  creapulsante.classList = "buttonrisposte"
-  divrisposte.appendChild(creapulsante)
+  domanda.incorrect_answers.push(domanda.correct_answer)
 
-  creapulsante.addEventListener("click", function () {
-    contatore++
-
-    PickRandomQuestion(arrayDati,numerodomande)
-
-
-  })
-
+  for (let i = domanda.incorrect_answers.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [domanda.incorrect_answers[i], domanda.incorrect_answers[j]] = [domanda.incorrect_answers[j], domanda.incorrect_answers[i]];
+  }
   for (let i2 = 0; i2 < domanda.incorrect_answers.length; i2++)//parto dal numero massimo di risposte e ciclo finchè non arrivo a zero
   {
     creapulsante = document.createElement("button")
     creapulsante.innerText = domanda.incorrect_answers[i2]
-
     creapulsante.classList = "buttonrisposte"
     divrisposte.appendChild(creapulsante)
-    creadiv.append(creaquestion)
-
-    creapulsante.addEventListener("click", function () {
+    creadiv.appendChild(creaquestion)
+    if (domanda.incorrect_answers[i2]==domanda.correct_answer)
+    {
+      creapulsante.id="bottoneverde"
+      creapulsante.addEventListener("click", function () {
+      contatore++
+  
+      PickRandomQuestion(arrayDati,numerodomande)
+      })
+    }
+    else{
+      creapulsante.id="bottonerosso"
+      creapulsante.addEventListener("click", function () {
 
       PickRandomQuestion(arrayDati,numerodomande)
     })
+    }
   }
   domandacorrente++
+
 }
 function CreaRisultato(percent) {
   let stringarisultato=""
@@ -409,7 +412,7 @@ function PrimaPagina() {
 
       checkpos[0].innerHTML = ""
       selectDif()
-      //PickRandomQuestion(arrayDati,numerodomande)
+      
     }
     else {
 
@@ -550,7 +553,9 @@ function addFeedback(){
   }
   checkpos[0].appendChild(createbutton)
   
-  
+  let overlay = document.createElement("div");
+  overlay.id = "overlay";
+  document.body.appendChild(overlay);
  
   createbutton.addEventListener("click",function modale(){
     let creadivmodal=document.createElement("div")
@@ -579,6 +584,8 @@ function addFeedback(){
     let modal = document.getElementById("myModal");
     let span = document.getElementsByClassName("close")[0]
     modal.style.display = "block";
+    overlay.style.display = "block";
+
     
     span.addEventListener("click",function() {
       modal.style.display = "none";
@@ -613,7 +620,7 @@ function selectDif(){
     let arrayDiID = ["green","orange","red"]
     button.addEventListener("click",async function(){
       difficulty=arrayBottoni[i]
-      console.log(numerodomande)
+      
       arrayDati= await changeDiff(arrayBottoni[i],inputDiDomande.value)
       
       PickRandomQuestion(arrayDati,numerodomande)
